@@ -123,6 +123,9 @@ def show_news():
         top_article_title = tr.select_one(r'div > div > div > a.list_tit.nclicks\(\'rig\.renws2\'\)').text
         top_article_src = tr.select_one(r'div > div > div > a.list_press.nclicks\(\'rig\.renws2pname\'\)').text
         top_article_img = tr.select_one('a > img')['src']
+        # img src 가 nonetype 인 경우 대안 만들었습니당
+        if top_article_img is None:
+            top_article_img = "https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1504499304/in36bktetqoapibgeabo.png"
         top_article_url_incomplete = tr.select_one(r'div > div > div > a.list_tit.nclicks\(\'rig\.renws2\'\)')['href']
         top_article_url = naver + top_article_url_incomplete
         top_article_logo = tr.select_one(r'div > div > div > a.list_press.nclicks\(\'rig\.renws2pname\'\) > span > img')['src']
@@ -193,7 +196,9 @@ def save():
         'img': img_receive,
         'url' : url_receive,
         'newspaper' : newspaper_receive,
-        "like_counts": 0}
+        "like_counts": 0,
+        "review_counts" : 0
+    }
 
     db.saveNews.insert_one(doc)
 
@@ -221,6 +226,32 @@ def like_news():
     db.saveNews.update_one({"title": title_receive}, {"$set": { 'like_counts': existing_value+1 }})
     #incremented_value = db.mystar.find_one({"name": title_receive})['like']
     return jsonify({'msg': "좋아요를 누르셨습니다!"})
+
+
+# 리뷰 받아 오기
+@app.route('/review', methods=['POST'])
+def write_review():
+    review_receive = request.form['review_give']
+    url_receive = request.form['url_give']
+
+    target_url = db.saveNews.find_one({'url': url_receive})
+    current_like = target_url['review_counts']
+
+    new_like = current_like + 1
+
+    doc = {'review': review_receive, 'url': url_receive}
+    db.newsReview.insert_one(doc)
+
+    db.saveNews.update_one({'url': url_receive}, {'$set': {'review_counts': new_like}})
+
+    return jsonify({'msg': '작성 완료!'})
+
+# 리뷰 보여 주기
+@app.route('/reviews', methods=['POST'])
+def read_reviews():
+    url_receive = request.form['url_give']
+    reviews = list(db.newsReview.find({'url' : url_receive}, {'_id': False}))
+    return jsonify({'all_reviews': reviews})
 
 
 if __name__ == '__main__':
