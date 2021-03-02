@@ -1,161 +1,170 @@
 <!doctype html>
 <html lang="en">
-    <head>
+<head>
+    <!-- Webpage Title -->
+    <title>Home | Scrappers</title>
 
-        <!-- Webpage Title -->
-        <title>Home | Scrappers</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-        <!-- Bulma CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-        <!-- Font Awesome CSS -->
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-        <!-- JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+<!-- HTML body structuring -->
+<!-- logo(?) & title & category (Home, Category, and Saved)-->
+<nav id="navbar">Scrappers
+    <ul class="navbar_list">
+        <a href="{{ url_for('home') }}">
+            <li>Home</li>
+        </a>
+        <a href="{{ url_for('saveBox') }}">
+            <li>Saved</li>
+        </a>
+    </ul>
+</nav>
+<section class="home">
+    <div class="logo">
+        <button class="logo_Btn" onclick="showArticles(), showArticles2()"><img
+                src="{{ url_for('static', filename='refresh logo.png') }}" alt="logo"></button>
 
-        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+        <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
+        <p id="datetime">
+            📫 <span style="font-weight: bold">꾹 눌러서 최신 소식 받아보기 </span>📆
+        </p>
 
-        <script>
-        </script>
+    </div>
+    <div class="top_article_section">
+        <div class="article_box">
+            <img src="{{ url_for('static', filename='Naver_logo-removebg-preview.png') }}" id="naver_logo" alt="">
+            <div class="article_section" id="naver">
 
-    </head>
-     <body>
-
-
-
-        <!-- HTML body structuring -->
-        <!-- logo(?) & title & category (Home, Category, and Saved)-->
-        <nav id="navbar">Scrappers
-            <ul class="navbar_list">
-                <a href="{{ url_for('home') }}"><li>Home</li></a>
-                <a href="{{ url_for('saveBox') }}"><li>Saved</li></a>
-            </ul>
-        </nav>
-        <section class="home">
-            <div class="logo">
-                <button class="logo_Btn" onclick="showArticles(), showArticles2()"><img src="{{ url_for('static', filename='refresh logo.png') }}" alt="logo"></button>
-                <p>2021.03.01 12:00 최종 업데이트</p>
             </div>
-            <div class="top_article_section">
-                <div class="article_box">
-                    <img src="{{ url_for('static', filename='Naver_logo-removebg-preview.png') }}" id="naver_logo" alt="">
-                    <div class="article_section" id="naver">
+        </div>
+        <div class="article_box">
+            <img src="{{ url_for('static', filename='daum_logo-removebg-preview.png') }}" id="daum_logo" alt="">
+            <div class="article_section" id="daum">
 
-                    </div>
-                </div>
-                <div class="article_box">
-                    <img src="{{ url_for('static', filename='daum_logo-removebg-preview.png') }}" id="daum_logo" alt="">
-                    <div class="article_section" id="daum">
-
-                    </div>
-                </div>
- </div>
-        </section>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
-        //     $(document).ready(function () {
-        //     showArticles()
-        // });
+    //     $(document).ready(function () {
+    //     showArticles()
+    // });
 
-            function showArticles() {
-                $('#naver').empty()
-                $.ajax({
-                    type: "GET",
-                    url: "/api/list",
-                    data: {},
-                    success: function (response) {
+    function showArticles() {
+        $('#naver').empty()
+        $.ajax({
+            type: "GET",
+            url: "/api/list",
+            data: {},
+            success: function (response) {
+                $("#datetime").html("");
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML =
+                    (dt.getFullYear()) + "." +
+                    (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
+                    (("0" + dt.getDate()).slice(-2)) + "." +
+                    " " + (("0" + dt.getHours()).slice(-2)) + ":" +
+                    (("0" + dt.getMinutes()).slice(-2)) + " 에 최종 업데이트 되었습니다." + "<br>" + "<span style='font-weight: bold'>📪 새소식 받으려면 꾹!</span> 📮" ;
 
-                        let list = response['news_give']
-                        for (let i = 0; i < 4; i++) {
-                            let title = list[i]['top_article_title']
-                            let img = list[i]['top_article_img']
-                            let url = list[i]['top_article_url']
-                            let logo = list[i]['top_article_logo'] // logo 이미지
-                            let link = list[i]['top_article_link']
-                            let newspaper = list[i]['top_article_src']
+                let list = response['news_give']
+                for (let i = 0; i < 4; i++) {
+                    let title = list[i]['top_article_title']
+                    let img = list[i]['top_article_img']
+                    let url = list[i]['top_article_url']
+                    let logo = list[i]['top_article_logo'] // logo 이미지
+                    let link = list[i]['top_article_link']
+                    let newspaper = list[i]['top_article_src']
 
-                            let temp_html = `
-
-<div class="card" style="width: 18rem;">
-<span id="${url}" name="${img}" class="${title}"></span>
-<span id="${url}_box" class="${newspaper}"></span>
-<span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">1</span> NAVER</b></span>
-  <img src="${img}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><a href="${url}">${title}</h5></a>
-    <p class="card-text"><img src="${logo}" style="width:30px; height:30px;">${newspaper}</p></a>
-    <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
-  </div>
-</div>  `
-                            $('#naver').append(temp_html)
-                        }
-                    }
-                })
-            }
-
-            function showArticles2() {
-              $('#daum').empty()
-                $.ajax({
-                    type: "GET",
-                    url: "/api2/list",
-                    data: {},
-                    success: function (response) {
-
-                        let list = response['news_give2']
-                        for (let i = 0; i < list.length; i++) {
-                            let title = list[i]['title']
-                            let img = list[i]['img']
-                            let url = list[i]['url']
-                            let newspaper = list[i]['newspaper']
-                     let temp_html = `
-                            <div class="row">
-                                <div class="thumbnail">
-                                    <p class="rank">1</p>
-                                    <img src="${img}">
-                                    <div class="caption">
-                                        <h3>${title}</h3>
-                                        <p>${newspaper}</p>
-                                        <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
-                                        <span id="${url}" name="${img}" class="${title}"></span>
-                                        <span id="${url}_box" class="${newspaper}"></span>
-                                    </div>
-                                </div>
-                        </div> `
-                            $('#daum').append(temp_html)
-                        }
-                    }
-                })
-            }
-
-        function saveNews(url) {
-
-            let img = document.getElementById(url).getAttribute('name');
-            let title = document.getElementById(url).getAttribute('class');
-            let newspaper = document.getElementById(url+"_box").getAttribute('class');
-            // db에 저장할 값 가지고 가기
-
-            $.ajax({
-                type: "POST",
-                url: "/save",
-                data: {
-                    title_give: title,
-                    img_give: img,
-                    url_give: url,
-                    newspaper_give : newspaper
-                },
-                // 지금 파이썬으로 보내는 값들.
-                success: function (response) {
-                    alert(response["msg"]);
-
+                    let temp_html = `
+                            <div class="card" style="width: 18rem;">
+                            <span id="${url}" name="${img}" class="${title}"></span>
+                            <span id="${url}_box" class="${newspaper}"></span>
+                            <span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> NAVER</b></span>
+                              <img src="${img}" class="card-img-top" alt="...">
+                              <div class="card-body">
+                                <h5 class="card-title"><a href="${url}">${title}</h5></a>
+                                <p class="card-text"><img src="${logo}" style="width:30px; height:30px; border-radius: 50%;">${newspaper}</p></a>
+                                <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
+                              </div>
+                            </div>
+                            `
+                    $('#naver').append(temp_html)
                 }
-            })
-        }
+            }
+        })
+    }
+
+    function showArticles2() {
+        $('#daum').empty()
+        $.ajax({
+            type: "GET",
+            url: "/api2/list",
+            data: {},
+            success: function (response) {
+
+                let list = response['news_give2']
+                for (let i = 0; i < list.length; i++) {
+                    let title = list[i]['title']
+                    let img = list[i]['img']
+                    let url = list[i]['url']
+                    let newspaper = list[i]['newspaper']
+                    let temp_html = `
+                           <div class="card" style="width: 18rem;">
+                            <span id="${url}" name="${img}" class="${title}"></span>
+                            <span id="${url}_box" class="${newspaper}"></span>
+                            <span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> Daum</b></span>
+                              <img src="${img}" class="card-img-top" alt="..." width="90px">
+                              <div class="card-body">
+                                <h5 class="card-title"><a href="${url}">${title}</h5></a>
+                                <p class="card-text"><img src="" style="width:30px; height:30px;">${newspaper}</p></a>
+                                <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
+                              </div>
+                            </div>
+                            `
+                    $('#daum').append(temp_html)
+                }
+            }
+        })
+    }
+
+    function saveNews(url) {
+
+        let img = document.getElementById(url).getAttribute('name');
+        let title = document.getElementById(url).getAttribute('class');
+        let newspaper = document.getElementById(url + "_box").getAttribute('class');
+        // db에 저장할 값 가지고 가기
+
+        $.ajax({
+            type: "POST",
+            url: "/save",
+            data: {
+                title_give: title,
+                img_give: img,
+                url_give: url,
+                newspaper_give: newspaper
+            },
+            // 지금 파이썬으로 보내는 값들.
+            success: function (response) {
+                alert(response["msg"]);
+
+            }
+        })
+    }
 </script>
 
-    </body>
+</body>
 </html>
