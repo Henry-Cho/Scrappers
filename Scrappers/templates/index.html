@@ -90,6 +90,8 @@
                     let newspaper = list[i]['top_article_src']
 
                     let temp_html = `
+                           <div class="row">
+                            <div class="thumbnail">
                             <div class="card" style="width: 18rem;">
                             <span id="${url}" name="${img}" class="${title}"></span>
                             <span id="${url}_box" class="${newspaper}"></span>
@@ -99,6 +101,8 @@
                                 <h5 class="card-title"><a href="${url}">${title}</h5></a>
                                 <p class="card-text"><img src="${logo}" style="width:30px; height:30px; border-radius: 50%;">${newspaper}</p></a>
                                 <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
+                              </div>
+                            </div>
                               </div>
                             </div>
                             `
@@ -123,6 +127,8 @@
                     let url = list[i]['url']
                     let newspaper = list[i]['newspaper']
                     let temp_html = `
+                           <div class="row">
+                            <div class="thumbnail">
                            <div class="card" style="width: 18rem;">
                             <span id="${url}" name="${img}" class="${title}"></span>
                             <span id="${url}_box" class="${newspaper}"></span>
@@ -134,6 +140,8 @@
                                 <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
                               </div>
                             </div>
+                          </div>
+                         </div>
                             `
                     $('#daum').append(temp_html)
                 }
