@@ -132,6 +132,8 @@ def show_news():
         top_article_link_incomplete = tr.select_one(r'div > div > div > a.list_press.nclicks\(\'rig\.renws2pname\'\)')['href']
         top_article_link = naver + top_article_link_incomplete
 
+        top_article_title = top_article_title.replace('"', '').replace('…', '')
+
         doc = {
             "top_article_title": top_article_title,
             "top_article_src": top_article_src,
@@ -242,7 +244,7 @@ def write_review():
     doc = {'review': review_receive, 'url': url_receive}
     db.newsReview.insert_one(doc)
 
-    db.saveNews.update_one({'url': url_receive}, {'$set': {'review_counts': new_like}})
+    db.saveNews.update_one({'url': url_receive}, {'$set': { 'review_counts': new_like}})
 
     return jsonify({'msg': '작성 완료!'})
 
