@@ -123,6 +123,8 @@ def show_news():
         top_article_title = tr.select_one(r'div > div > div > a.list_tit.nclicks\(\'rig\.renws2\'\)').text
         top_article_src = tr.select_one(r'div > div > div > a.list_press.nclicks\(\'rig\.renws2pname\'\)').text
         top_article_img = tr.select_one('a > img')['src']
+
+        top_article_img = top_article_img.replace('?type=nf88_60', '')
         # img src 가 nonetype 인 경우 대안 만들었습니당
         if top_article_img is None:
             top_article_img = "https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1504499304/in36bktetqoapibgeabo.png"
