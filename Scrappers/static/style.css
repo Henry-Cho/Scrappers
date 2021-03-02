@@ -1,168 +1,181 @@
 /* whole touch */
 
 :root {
-  --color-green: green;
-  --color-white: white;
-  --font-large: 24px;
+    --color-black: black;
+    --color-white: white;
+    --font-large: 24px;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
 /* navbar */
 
 nav {
-  background: var(--color-green);
-  padding: 20px 20px;
-  color: var(--color-white);
-  font-size: var(--font-large);
-  font-weight: bold;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+    background: var(--color-black);
+    padding: 20px 20px;
+    color: var(--color-white);
+    font-size: var(--font-large);
+    font-weight: bold;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav ul {
-  width: 200px;
-  padding: 0;
-  margin-bottom: 0;
-  font-weight: normal;
+    width: 200px;
+    padding: 0;
+    margin-bottom: 0;
+    font-weight: normal;
 }
 
 nav li {
-  list-style: none;
+    list-style: none;
 }
 
 nav a {
-  color: white;
-  padding: 5px;
+    color: white;
+    padding: 5px;
 }
 
 nav a:hover {
-  cursor: pointer;
-  color: green;
-  background: white;
-  border-radius: 4px;
-  text-decoration: none;
+    cursor: pointer;
+    color: black;
+    background: white;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
 .navbar_list {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 /* home */
 
 .home {
-  padding: 150px 20px;
-  text-align: center;
+    padding: 150px 20px;
+    text-align: center;
 }
 
 .logo img {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
 
 .logo_Btn {
-  border: none;
-  background: none;
-  outline: none;
+    border: none;
+    background: none;
+    outline: none;
 }
 
 .logo_Btn:hover {
-  transform: translateY(6px) rotate(0.8turn);
-  transition: all 500ms ease-in-out;
+    transform: translateY(6px) rotate(0.8turn);
+    transition: all 500ms ease-in-out;
 }
 
 .logo_Btn:active {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .logo_Btn:focus {
-  outline: 0;
+    outline: 0;
 }
 
 /* main structure */
 
 .top_article_section {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* logo decoration (Naver & Daum) */
 
 #naver_logo {
-  width: 100px;
-  height: 100px;
-  background: none;
+    width: 100px;
+    height: 100px;
+    background: none;
 }
 
 #daum_logo {
-  width: 200px;
-  height: 100px;
+    width: 200px;
+    height: 100px;
 }
 
 #daum_logo:hover,
 #naver_logo:hover {
-  transform: scale(1.1);
-  transition: transform 300ms ease-in-out;
+    transform: scale(1.1);
+    transition: transform 300ms ease-in-out;
 }
 
 .col-sm-6 col-md-4 {
-  width: 100%;
+    width: 100%;
 }
 
 .rank {
-  font-size: 24px;
-  font-weight: bold;
-  width: 10%;
+    font-size: 24px;
+    font-weight: bold;
+    width: 10%;
 }
 
 .article_box {
-  flex-basis: 44%;
+    flex-basis: 45%;
+
 }
 
 .article_section {
-  border: 2px outset green;
-  border-radius: 4px;
-  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
-  padding: 20px 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    border: 2px outset black;
+    border-radius: 4px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+
+
 }
 
 .row {
-  margin: 30px;
-  width: 30%;
+    margin: 30px;
+    width: 30%;
 }
 
 .thumbnail {
-  padding: 8px 20px;
+    padding: 8px 20px;
+    width : 400px;
+    box-shadow: 1px 2px 6px 12px rgba(0, 0, 255, 0.2);
+    align-content: center;
+    margin-left: 95px;
 }
 
 .thumbnail:hover {
-  background: forestgreen;
-  border-radius: 5px;
-  color: white;
-  transition: all 300ms ease-in;
+    background: black;
+    border-radius: 5px;
+    color: white;
+    transition: all 300ms ease-in;
+    position: absolute;
+    width: 400px;
+    height:600px;
+    transform: translate(40%, -5%);
 }
 
 .thumbnail:hover .rank {
-  background: white;
-  color: forestgreen;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  line-height: 24px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    line-height: 24px;
 }
 
 .thumbnail img {
-  border-radius: 4px;
+    border-radius: 4px;
+    width : 400px;
+    height: 250px;
+
 }
 
+
 /* Saved page */
+
