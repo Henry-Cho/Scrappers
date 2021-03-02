@@ -30,14 +30,13 @@
     <style>
 
         .card-box {
-            width: 800px;
-            height: 400px;
+            width: 100%;
             display: inline-block;
             margin: auto;
         }
 
         .card {
-            width: 300px;
+            width: 500px;
             display: inline-block;
             margin-bottom: 20px;
         }
@@ -71,7 +70,7 @@
 
     <script>
         $(document).ready(function () {
-            showArticles()
+            showArticles(), readReview()
         });
 
         function showArticles() {
@@ -87,6 +86,7 @@
                         let url = list[i]['url']
                         let newspaper = list[i]['newspaper']
                         let like_counts = list[i]['like_counts']
+                        let review_counts = list[i]['review_counts']
 
                         let temp_html = `
                              <div class="card" style="">
@@ -98,15 +98,16 @@
                         <p>${newspaper}</p>
 
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
+                      <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
+                      <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">이름</th>
-                                <th scope="col">댓글</th>
+                                <th scope="col">comment</th>
                             </tr>
                             <tbody id="${url}_comment" class="9999">
 
@@ -135,6 +136,7 @@
                         let url = list[i]['url']
                         let newspaper = list[i]['newspaper']
                         let like_counts = list[i]['like_counts']
+                        let review_counts = list[i]['review_counts']
 
                         let temp_html = `
                              <div class="card" style="">
@@ -146,17 +148,18 @@
                         <p>${newspaper}</p>
 
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
+                      <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
+                      <button onclick="incrementLikes('${title}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">이름</th>
-                                <th scope="col">댓글</th>
+                            <th scope="col">comment</th>
                             </tr>
-                            <tbody id="${url}_comment" class="9999">
+                            <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
 
                             </tbody>
 
@@ -184,6 +187,7 @@
                         let url = list[i]['url']
                         let newspaper = list[i]['newspaper']
                         let like_counts = list[i]['like_counts']
+                        let review_counts = list[i]['review_counts']
 
                         let temp_html = `
                              <div class="card" style="">
@@ -195,17 +199,18 @@
                         <p>${newspaper}</p>
 
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
+                       <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
+                      <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">이름</th>
-                                <th scope="col">댓글</th>
+                               <th scope="col">comment</th>
                             </tr>
-                            <tbody id="${url}_comment" class="9999">
+                            <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
 
                             </tbody>
 
@@ -224,11 +229,70 @@
                     url: '/showSaveNews/like',
                     data: {title_give: title},
                     success: function (response) {
+                        console.log(title)
                         alert(response['msg']);
                         window.location.reload();
                     }
                 });
         }
+
+        function makeReview(url) {
+            let temp = document.getElementById(url + "_input")
+            // let temp3 = document.getElementById(url)
+            // url은 그냥 url로 해서 넘어감
+
+            let comment = $(temp).val()
+
+            // 인풋박스는 이렇게 val() 해야 값을 가지고옴
+
+            $.ajax({
+                type: "POST",
+                url: "/review",
+                data: {
+                    review_give: comment,
+                    url_give: url,
+                },
+                // 지금 파이썬으로 보내는 값들.
+                success: function (response) {
+                    console.log(comment)
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            })
+        }
+
+                // 댓글창 확인
+        function readReview(url) {
+            console.log(url)
+            // let save = document.getElementById(url + "_save")
+            // $(url).trigger("click");
+                $.ajax({
+                    type: 'POST',
+                    url: '/reviews',
+                    data: {
+                        url_give: url,
+                    },
+                    success: function (response) {
+                        let reviewsBox = document.getElementById(url + "_comment")
+                        let reviews = response['all_reviews']
+
+                        for (let i = 0; i < reviews.length; i++) {
+                            let showReview = reviews[i]['review']
+                            let temp_html = `
+                            <tr>
+                            <td>${showReview}</td>
+                            </tr>
+                            `
+                            $(reviewsBox).append(temp_html)}
+                            document.getElementById(url + "_save").disabled = true;
+                        }
+                })
+            }
+
+function showReview() {
+
+            }
+
     </script>
 </section>
 
