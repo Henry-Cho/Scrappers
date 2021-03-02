@@ -101,7 +101,7 @@
                       <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
                       <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
                       <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <button onclick="incrementLikes('${url}')">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
@@ -151,7 +151,7 @@
                       <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
                       <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
                       <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${title}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <button onclick="incrementLikes('${url}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
@@ -202,7 +202,7 @@
                       <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
                       <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
                        <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <button onclick="incrementLikes('${url}')">👍 <b><span style="color:red;">${like_counts}</b></button>
                     </div>
 
                     <table class="table">
@@ -223,13 +223,12 @@
             })
         }
 
-        function incrementLikes(title) {
+        function incrementLikes(url) {
                 $.ajax({
                     type: 'POST',
                     url: '/showSaveNews/like',
-                    data: {title_give: title},
+                    data: {url_give: url},
                     success: function (response) {
-                        console.log(title)
                         alert(response['msg']);
                         window.location.reload();
                     }
