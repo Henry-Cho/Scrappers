@@ -10,19 +10,217 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <!-- Font Awesome CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <!-- 구글폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap"
+          rel="stylesheet">
+    <!--font-family: 'Black Han Sans', sans-serif;-->
+    <!--font-family: 'Stylish', sans-serif;-->
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <!--
+    <link href="{{ url_for('static', filename='style2.css') }}" rel="stylesheet">-->
 </head>
 <body>
+<style>
+    /* whole touch */
+
+:root {
+    --color-black: black;
+    --color-white: white;
+    --font-large: 48px;
+    --font-medium: 24px;
+    --font-kind: Black Han Sans, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-kind);
+}
+
+/* navbar */
+
+nav {
+    background: var(--color-black);
+    padding: 40px 40px;
+    color: var(--color-white);
+    font-size: var(--font-large);
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav ul {
+    width: 200px;
+    padding: 0;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+nav li {
+    list-style: none;
+    font-size: var(--font-medium);
+}
+
+nav a {
+    color: white;
+    padding: 5px;
+    margin: 0px 10px 0px 10px;
+}
+
+nav a:hover {
+    cursor: pointer;
+    color: black;
+    background: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transform: scale(1.1);
+    transition: transform 200ms ease-in-out ;
+}
+
+.navbar_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* home */
+
+.home {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    color: white;
+}
+
+.logo_Btn {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.logo_Btn:hover {
+    transform: translateY(6px) rotate(0.8turn);
+    transition: all 500ms ease-in-out;
+}
+
+.logo_Btn:active {
+    transform: scale(1.1);
+}
+
+.logo_Btn:focus {
+    outline: 0;
+}
+
+/* main structure */
+
+.top_article_section {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* logo decoration (Naver & Daum) */
+
+#naver_logo, #daum_logo {
+    color: black;
+    font-size: 70px;
+}
+
+#daum_logo:hover,
+#naver_logo:hover {
+    transform: scale(1.1);
+    transition: transform 300ms ease-in-out;
+}
+
+.col-sm-6 col-md-4 {
+    width: 100%;
+}
+
+.rank {
+    font-size: 24px;
+    font-weight: bold;
+    width: 10%;
+}
+
+.article_box {
+    flex-basis: 45%;
+
+}
+
+.article_section {
+    border: 2px outset black;
+    border-radius: 4px;
+    box-shadow: 12px 12px 2px 1px darkgray;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.row {
+    margin: 30px;
+    width: 30%;
+}
+
+.thumbnail {
+    padding: 8px 20px;
+    width : 400px;
+    box-shadow: 1px 2px 6px 12px rgba(0, 0, 255, 0.2);
+    align-content: center;
+    margin-left: 95px;
+}
+
+.thumbnail:hover {
+    background: black;
+    border-radius: 5px;
+    color: white;
+    transition: all 300ms ease-in;
+    position: absolute;
+    width: 400px;
+    height:600px;
+    transform: translate(40%, -5%);
+}
+
+.thumbnail:hover .rank {
+    background: white;
+    color: black;
+    border-radius: 50%;
+    line-height: 24px;
+}
+
+.thumbnail img {
+    border-radius: 4px;
+    width : 400px;
+    height: 250px;
+
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+
+  }
+
+}
+
+/* Saved page */
+</style>
 <!-- HTML body structuring -->
 <!-- logo(?) & title & category (Home, Category, and Saved)-->
 <nav id="navbar">Scrappers
+    <div class="logo">
+        <button class="logo_Btn" onclick="showArticles(), showArticles2()"><span style="font-size: 80px">📫</span></button>
+    </div>
+    <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
+    <p id="datetime"></p>
     <ul class="navbar_list">
         <a href="{{ url_for('home') }}">
             <li>Home</li>
@@ -32,26 +230,17 @@
         </a>
     </ul>
 </nav>
+
 <section class="home">
-    <div class="logo">
-        <button class="logo_Btn" onclick="showArticles(), showArticles2()"><img
-                src="{{ url_for('static', filename='refresh logo.png') }}" alt="logo"></button>
-
-        <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
-        <p id="datetime">
-            📫 <span style="font-weight: bold">꾹 눌러서 최신 소식 받아보기 </span>📆
-        </p>
-
-    </div>
     <div class="top_article_section">
         <div class="article_box">
-            <img src="{{ url_for('static', filename='Naver_logo-removebg-preview.png') }}" id="naver_logo" alt="">
+            <h2 id="naver_logo">Naver</h2>
             <div class="article_section" id="naver">
 
             </div>
         </div>
         <div class="article_box">
-            <img src="{{ url_for('static', filename='daum_logo-removebg-preview.png') }}" id="daum_logo" alt="">
+            <h2 id="daum_logo">Daum</h2>
             <div class="article_section" id="daum">
 
             </div>
@@ -60,9 +249,17 @@
 </section>
 
 <script>
-    //     $(document).ready(function () {
-    //     showArticles()
-    // });
+    $(document).ready(function () {
+        $("#datetime").html("");
+        var dt = new Date();
+        let temp_string =
+            (dt.getFullYear()) + "." +
+            (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
+            (("0" + dt.getDate()).slice(-2)) + "." +
+            " " + (("0" + dt.getHours()).slice(-2)) + ":" +
+            (("0" + dt.getMinutes()).slice(-2)) + "<span style='color: white; font-size: 20px'> ✔</span>";
+        document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color: white;">${temp_string}</span>`;
+    });
 
     function showArticles() {
         $('#naver').empty()
@@ -73,12 +270,13 @@
             success: function (response) {
                 $("#datetime").html("");
                 var dt = new Date();
-                document.getElementById("datetime").innerHTML =
+                    let temp_string =
                     (dt.getFullYear()) + "." +
                     (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
                     (("0" + dt.getDate()).slice(-2)) + "." +
                     " " + (("0" + dt.getHours()).slice(-2)) + ":" +
-                    (("0" + dt.getMinutes()).slice(-2)) + " 에 최종 업데이트 되었습니다." + "<br>" + "<span style='font-weight: bold'>📪 새소식 받으려면 꾹!</span> 📮" ;
+                    (("0" + dt.getMinutes()).slice(-2));
+                document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color: white;">${temp_string}</span> <span style='color: green; font-size: 20px'>✔</span>`;
 
                 let list = response['news_give']
                 for (let i = 0; i < 4; i++) {
@@ -95,7 +293,7 @@
                             <div class="card" style="width: 18rem;">
                             <span id="${url}" name="${img}" class="${title}"></span>
                             <span id="${url}_box" class="${newspaper}"></span>
-                            <span style="border-radius:10px; width:180px; height:50px; color:black; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> NAVER</b></span>
+                            <span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> NAVER</b></span>
                               <img src="${img}" class="card-img-top" alt="...">
                               <div class="card-body">
                                 <h5 class="card-title"><a href="${url}">${title}</h5></a>
