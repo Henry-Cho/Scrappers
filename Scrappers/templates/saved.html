@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <title>saved</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+
+    <style>
+
+        .card-box {
+            width: 800px;
+            height: 400px;
+            display: inline-block;
+            margin: auto;
+        }
+
+        .card {
+            width: 300px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- HTML body structuring -->
+<!-- logo(?) & title & category (Home, Category, and Saved)-->
+<nav id="navbar">Scrappers
+    <ul class="navbar_list">
+        <a href="{{ url_for('home') }}">
+            <li>Home</li>
+        </a>
+        <a href="{{ url_for('saveBox') }}">
+            <li>Saved</li>
+        </a>
+    </ul>
+</nav>
+
+<section class="home" style=''>
+    <div class="home_intro">
+        <img src="">
+    </div>
+    </div>
+    <br>
+    <button onclick="sort_like()" class="filter_Btn">좋아요 순</button> <button onclick="sort_recent()" class="filter_Btn">최신 순</button>
+    <div class="save_box_bg">
+        <div class="card-box" id="save-box"></div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            showArticles()
+        });
+
+        function showArticles() {
+            $.ajax({
+                type: "GET",
+                url: "/showSaveNews",
+                data: {},
+                success: function (response) {
+                    let list = response['list_saveBox']
+                    for (let i = 0; i < list.length; i++) {
+                        let title = list[i]['title']
+                        let img = list[i]['img']
+                        let url = list[i]['url']
+                        let newspaper = list[i]['newspaper']
+                        let like_counts = list[i]['like_counts']
+
+                        let temp_html = `
+                             <div class="card" style="">
+                    <img class="card-img-top"
+                         src="${img}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="${url}" class="card-title">${title}</a>
+                        <p>${newspaper}</p>
+
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">이름</th>
+                                <th scope="col">댓글</th>
+                            </tr>
+                            <tbody id="${url}_comment" class="9999">
+
+                            </tbody>
+
+                        </thead>
+                    </table>
+                   `
+                        $('#save-box').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function sort_like() {
+            $.ajax({
+                type: 'GET',
+                url: '/showSaveNews/like_sort',
+                data: {},
+                success: function (response) {
+                    $('#save-box').html("");
+                    let list = response['list_saveBox']
+                    for (let i = 0; i < list.length; i++) {
+                        let title = list[i]['title']
+                        let img = list[i]['img']
+                        let url = list[i]['url']
+                        let newspaper = list[i]['newspaper']
+                        let like_counts = list[i]['like_counts']
+
+                        let temp_html = `
+                             <div class="card" style="">
+                    <img class="card-img-top"
+                         src="${img}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="${url}" class="card-title">${title}</a>
+                        <p>${newspaper}</p>
+
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">이름</th>
+                                <th scope="col">댓글</th>
+                            </tr>
+                            <tbody id="${url}_comment" class="9999">
+
+                            </tbody>
+
+                        </thead>
+                    </table>
+                   `
+                        $('#save-box').append(temp_html)
+                    }
+                }
+            });
+
+        }
+
+        function sort_recent() {
+            $.ajax({
+                type: "GET",
+                url: "/showSaveNews/recent",
+                data: {},
+                success: function (response) {
+                    $('#save-box').html("");
+                    let list = response['list_saveBox']
+                    for (let i = list.length-1; i >= 0; i--) {
+                        let title = list[i]['title']
+                        let img = list[i]['img']
+                        let url = list[i]['url']
+                        let newspaper = list[i]['newspaper']
+                        let like_counts = list[i]['like_counts']
+
+                        let temp_html = `
+                             <div class="card" style="">
+                    <img class="card-img-top"
+                         src="${img}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="${url}" class="card-title">${title}</a>
+                        <p>${newspaper}</p>
+
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark">작성</button> <button onclick="incrementLikes('${title}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">이름</th>
+                                <th scope="col">댓글</th>
+                            </tr>
+                            <tbody id="${url}_comment" class="9999">
+
+                            </tbody>
+
+                        </thead>
+                    </table>
+                   `
+                        $('#save-box').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function incrementLikes(title) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/showSaveNews/like',
+                    data: {title_give: title},
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                });
+        }
+    </script>
+</section>
+
+</body>
+</html>
