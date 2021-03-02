@@ -221,9 +221,9 @@ def showSaveNews_recent():
 
 @app.route('/showSaveNews/like', methods=['POST'])
 def like_news():
-    title_receive = request.form['title_give']
-    existing_value = db.saveNews.find_one({"title": title_receive})['like_counts']
-    db.saveNews.update_one({"title": title_receive}, {"$set": { 'like_counts': existing_value+1 }})
+    url_receive = request.form['url_give']
+    existing_value = db.saveNews.find_one({"url": url_receive})['like_counts']
+    db.saveNews.update_one({"url": url_receive}, {"$set": { 'like_counts': existing_value+1 }})
     #incremented_value = db.mystar.find_one({"name": title_receive})['like']
     return jsonify({'msg': "좋아요를 누르셨습니다!"})
 
