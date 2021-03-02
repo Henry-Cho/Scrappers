@@ -172,6 +172,7 @@ def show_news2():
         img = tr.select_one('div.item_issue > a > img')['src']
         newspaper = tr.select_one('div.item_issue > div > span').text
 
+        title = title.replace('"', '').replace('…', '')
 
         doc = {
             "title": title,
