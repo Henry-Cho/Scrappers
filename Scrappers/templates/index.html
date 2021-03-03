@@ -121,11 +121,12 @@ nav a:hover {
 }
 
 /* main structure */
-
+/*
 .top_article_section {
     display: flex;
     justify-content: space-between;
 }
+*/
 
 /* logo decoration (Naver & Daum) */
 
@@ -134,81 +135,144 @@ nav a:hover {
     font-size: 70px;
 }
 
-#daum_logo:hover,
-#naver_logo:hover {
+#daum_logo:hover {
+    cursor: pointer;
     transform: scale(1.1);
     transition: transform 300ms ease-in-out;
 }
 
-.col-sm-6 col-md-4 {
-    width: 100%;
+#daum_logo:hover #d {
+    color: dodgerblue;
 }
 
-.rank {
-    font-size: 24px;
-    font-weight: bold;
-    width: 10%;
+#daum_logo:hover #a {
+    color: lightgreen;
 }
 
-.article_box {
-    flex-basis: 45%;
-
+#daum_logo:hover #u {
+    color: orange;
 }
 
-.article_section {
-    border: 2px outset black;
-    border-radius: 4px;
-    box-shadow: 12px 12px 2px 1px darkgray;
-    padding: 12px 12px;
+#daum_logo:hover #m {
+    color: #e8344e;
+}
+
+#naver_logo:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    color: green;
+    transition: transform 300ms ease-in-out;
+}
+
+/* Card decoration */
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.mini_container {
     display: flex;
     flex-direction: column;
-
-
+    margin: 0px 15px 0px 15px;
+    width: 50%;
 }
 
-.row {
-    margin: 30px;
-    width: 30%;
+.section_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.thumbnail {
-    padding: 8px 20px;
-    width : 400px;
-    box-shadow: 1px 2px 6px 12px rgba(0, 0, 255, 0.2);
-    align-content: center;
-    margin-left: 95px;
+.container h2 {
+    margin-bottom: 10px;
 }
 
-.thumbnail:hover {
+.card {
+    position: relative;
+}
+
+.section_container > .box {
+    margin-bottom: 0;
+}
+
+.card a {
+    color: black;
+}
+
+.card a:hover {
+    padding: 8px 12px;
     background: black;
     border-radius: 5px;
+    margin-bottom: 10px;
     color: white;
-    transition: all 300ms ease-in;
-    position: absolute;
-    width: 400px;
-    height:600px;
-    transform: translate(40%, -5%);
+    transition: all 300ms ease-in-out;
 }
 
-.thumbnail:hover .rank {
-    background: white;
+.card button {
+    margin: 10px;
+    font-weight: bolder;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    color: gray;
+}
+
+.card button:hover {
+    cursor: pointer;
+    transform: scale(1.1) rotate(1turn);
     color: black;
     border-radius: 50%;
-    line-height: 24px;
+    transition: all 400ms ease-in-out;
 }
 
-.thumbnail img {
-    border-radius: 4px;
-    width : 400px;
-    height: 250px;
+.card button:focus {
+    transform: scale(1.1);
+    transition: all 300ms ease-in-out;
+    outline: none;
+}
 
+.section_container img {
+    width: 90px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.section_container img:hover {
+    transform: scale(1.2);
+    transition: transform 250ms ease-in-out;
+}
+
+#box1 {
+    border: 20px solid #131313;
+}
+
+#box2 {
+    border: 20px solid #2B2B2B;
+}
+
+#box3 {
+    border: 20px solid 	#575151;
+}
+
+#box4 {
+    border: 20px solid 	#FEB062;
 }
 
 @media screen and (max-width: 768px) {
-  nav {
+    .home {
+        padding: 80px 20px;
+    }
 
-  }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .section_container {
+        margin-bottom: 20px;
+    }
 }
 
 /* Saved page */
@@ -232,6 +296,23 @@ nav a:hover {
 </nav>
 
 <section class="home">
+    <div class="container">
+        <div class="mini_container">
+        <h2 id="naver_logo">Naver</h2>
+            <div class="section_container" id="naver">
+
+            </div>
+        </div>
+        <div class="mini_container">
+            <h2 id="daum_logo"><span id="d">D</span><span id="a">a</span><span id="u">u</span><span id="m">m</span></h2>
+            <div class="section_container" id="daum">
+        </div>
+
+
+        </div>
+    </div>
+
+    <!--
     <div class="top_article_section">
         <div class="article_box">
             <h2 id="naver_logo">Naver</h2>
@@ -246,6 +327,7 @@ nav a:hover {
             </div>
         </div>
     </div>
+    -->
 </section>
 
 <script>
@@ -276,7 +358,7 @@ nav a:hover {
                     (("0" + dt.getDate()).slice(-2)) + "." +
                     " " + (("0" + dt.getHours()).slice(-2)) + ":" +
                     (("0" + dt.getMinutes()).slice(-2));
-                document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color: white;">${temp_string}</span> <span style='color: green; font-size: 20px'>✔</span>`;
+                document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color: white;">${temp_string}</span><span style='color: green; font-size: 40px'>✔</span>`;
 
                 let list = response['news_give']
                 for (let i = 0; i < 4; i++) {
@@ -288,21 +370,18 @@ nav a:hover {
                     let newspaper = list[i]['top_article_src']
 
                     let temp_html = `
-                           <div class="row">
-                            <div class="thumbnail">
-                            <div class="card" style="width: 18rem;">
+                <div class="box" id="box${i+1}">
+                    <div class="card" style="width: 18rem;">
                             <span id="${url}" name="${img}" class="${title}"></span>
                             <span id="${url}_box" class="${newspaper}"></span>
-                            <span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> NAVER</b></span>
-                              <img src="${img}" class="card-img-top" alt="...">
+                              <img src="${img}" class="card-img-top" alt="..." width="90px">
                               <div class="card-body">
-                                <h5 class="card-title"><a href="${url}">${title}</h5></a>
-                                <p class="card-text"><img src="${logo}" style="width:30px; height:30px; border-radius: 50%;">${newspaper}</p></a>
-                                <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
+                                <h5 class="card-title"><a href="${url}">${title}</a></h5>
+                                <p class="card-text">${newspaper}</p>
+                                <button class="btn btn-primary" onclick="saveNews('${url}')">저장하기</button>
                               </div>
-                            </div>
-                              </div>
-                            </div>
+                    </div>
+                </div>
                             `
                     $('#naver').append(temp_html)
                 }
@@ -325,21 +404,18 @@ nav a:hover {
                     let url = list[i]['url']
                     let newspaper = list[i]['newspaper']
                     let temp_html = `
-                           <div class="row">
-                            <div class="thumbnail">
-                           <div class="card" style="width: 18rem;">
-                            <span id="${url}" name="${img}" class="${title}"></span>
-                            <span id="${url}_box" class="${newspaper}"></span>
-                            <span style="border-radius:10px; width:180px; height:50px; color:#2DB400; display:block; text-align:center; padding:15px; font-family:'Berlin Sans FB'"><b><span style="color:red;">${i+1}</span> Daum</b></span>
-                              <img src="${img}" class="card-img-top" alt="..." width="90px">
-                              <div class="card-body">
-                                <h5 class="card-title"><a href="${url}">${title}</h5></a>
-                                <p class="card-text"><img src="" style="width:30px; height:30px;">${newspaper}</p></a>
-                                <a href="#" class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
-                              </div>
-                            </div>
-                          </div>
-                         </div>
+                    <div class="box" id="box${i+1}">
+                        <div class="card" style="width: 18rem;">
+                                <span id="${url}" name="${img}" class="${title}"></span>
+                                <span id="${url}_box" class="${newspaper}"></span>
+                                  <img src="${img}" class="card-img-top" alt="..." width="90px">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><a href="${url}">${title}</a></h5>
+                                    <p class="card-text">${newspaper}</p>
+                                    <button class="btn btn-primary" onclick="saveNews('${url}')">저장하기</a>
+                                  </div>
+                        </div>
+                    </div>
                             `
                     $('#daum').append(temp_html)
                 }
