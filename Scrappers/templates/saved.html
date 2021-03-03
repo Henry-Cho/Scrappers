@@ -24,6 +24,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
 
      <style>
 :root {
@@ -36,13 +40,27 @@
 
 /* navbar */
 
+@media screen and (max-width: 700px) {
+
+    nav {
+        width: 700px;
+    }
+
+    div.card {
+        width: 670px;
+        display: inline-block;
+        margin: 15px 15px 15px 15px;
+    }
+
+}
+
+
 nav {
-    background: var(--color-black);
+    background-color:black;
     padding: 40px 40px;
     color: var(--color-white);
     font-size: var(--font-large);
     font-weight: bold;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,21 +144,24 @@ nav a:hover {
 
 /*    }*/
 
-    .card-box {
-
-    }
 .warp {
     margin:auto;
 }
     .card {
         width: 600px;
         display:inline-block;
-        margin : 15px 15px 15px 15px;
+        margin:15px;
     }
 
     .card-box {
-        margin-top:20px;
+        align-items: center;
     }
+
+.center {
+    margin-top:10px;
+    display:block;
+    text-align:center;
+}
 
 
     </style>
@@ -148,6 +169,7 @@ nav a:hover {
 <body>
 <!-- HTML body structuring -->
 <!-- logo(?) & title & category (Home, Category, and Saved)-->
+<div class="warp">
 <nav id="navbar"  style="font-family:'Black Han Sans'">Scrappers
     <div class="logo">
         <button class="logo_Btn" onclick="reload09()"><span style="font-size: 80px;">📫</span></button>
@@ -163,10 +185,13 @@ nav a:hover {
         </a>
     </ul>
 </nav>
+    </div>
 <!--style="outline:none; background:none; border:none; color:pink;"-->
-<button onclick="sort_like()">Hot</button>
-<button onclick="sort_recent()">최신순</button>
-<button onclick="sort_Review()">댓글 많은 순</button>
+<div class="center">
+    <button class="btn btn-info" onclick="sort_recent()" style="font-family:'Stylish'">Recent</button>
+    <button class="btn btn-info" onclick="sort_Review()">💬</button>
+    <button  class="btn btn-info" onclick="sort_like()">🔥</button>
+</div>
 <div class="card-box" id="save-box" style=''> </div>
 
 
@@ -201,8 +226,8 @@ nav a:hover {
                          src="${img}"
                          alt="Card image cap">
                     <div class="card-body">
-                       <a target="_blank" href="${url}" class="card-title" style="font-family:;">${title}</a>
-                       <p>${newspaper}</p>
+                       <a target="_blank" href="${url}" class="card-title" style="font-family: 'Noto Serif KR', serif; font-size:20px;">${title}</a>
+                       <p style="font-family:'Black Han Sans'; color:lightslategrey; font-size:20px;">${newspaper}</p>
 
 
 
@@ -216,7 +241,7 @@ nav a:hover {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" style="font-family:'Black Han Sans'">comment</th>
+                                <th scope="col" style="font-family:'Noto Serif KR'"><b>comment</b></th>
                             </tr>
                             <tbody id="${url}_comment" class="9999">
 
@@ -253,8 +278,8 @@ nav a:hover {
                          src="${img}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a target="_blank" href="${url}" class="card-title">${title}</a>
-                        <p>${newspaper}</p>
+                       <a target="_blank" href="${url}" class="card-title" style="font-family: 'Noto Serif KR', serif; font-size:20px;">${title}</a>
+                       <p style="font-family:'Black Han Sans'; color:lightslategrey; font-size:20px;">${newspaper}</p>
 
                     <div class="input-group mb-3">
                       <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -266,7 +291,7 @@ nav a:hover {
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">comment</th>
+                            <th scope="col" style="font-family:'Noto Serif KR'"><b>comment</b></th>
                             </tr>
                             <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
 
@@ -304,8 +329,8 @@ nav a:hover {
                          src="${img}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a target="_blank" href="${url}" class="card-title">${title}</a>
-                        <p>${newspaper}</p>
+            <a target="_blank" href="${url}" class="card-title" style="font-family: 'Noto Serif KR', serif; font-size:20px;">${title}</a>
+                       <p style="font-family:'Black Han Sans'; color:lightslategrey; font-size:20px;">${newspaper}</p>
 
                     <div class="input-group mb-3">
                       <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -317,7 +342,7 @@ nav a:hover {
                     <table class="table">
                         <thead>
                             <tr>
-                               <th scope="col">comment</th>
+                               <th scope="col" style="font-family:'Noto Serif KR'"><b>comment</b></th>
                             </tr>
                             <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
 
@@ -354,8 +379,8 @@ nav a:hover {
                          src="${img}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a target="_blank" href="${url}" class="card-title">${title}</a>
-                        <p>${newspaper}</p>
+            <a target="_blank" href="${url}" class="card-title" style="font-family: 'Noto Serif KR', serif; font-size:20px;">${title}</a>
+                       <p style="font-family:'Black Han Sans'; color:lightslategrey; font-size:20px;">${newspaper}</p>
 
                     <div class="input-group mb-3">
                       <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -367,7 +392,7 @@ nav a:hover {
                     <table class="table">
                         <thead>
                             <tr>
-                               <th scope="col">comment</th>
+                               <th scope="col" style="font-family:'Noto Serif KR'"><b>comment</b></th>
                             </tr>
                             <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
 
@@ -401,6 +426,10 @@ nav a:hover {
 
             let comment = $(temp).val()
 
+            if (comment == '') {
+                console.log('댓글 미작성')
+            } else {
+
             // 인풋박스는 이렇게 val() 해야 값을 가지고옴
 
             $.ajax({
@@ -417,6 +446,7 @@ nav a:hover {
                     window.location.reload();
                 }
             })
+        }
         }
 
                 // 댓글창 확인
@@ -438,7 +468,7 @@ nav a:hover {
                             let showReview = reviews[i]['review']
                             let temp_html = `
                             <tr>
-                            <td>${showReview}</td>
+                            <td style="font-family:'Noto Serif KR'">${showReview}</td>
                             </tr>
                             `
                             $(reviewsBox).append(temp_html)}
