@@ -25,27 +25,135 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
 
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+     <style>
+:root {
+    --color-black: black;
+    --color-white: white;
+    --font-large: 48px;
+    --font-medium: 24px;
+    --font-kind: Black Han Sans, sans-serif;
+}
 
-    <style>
+/* navbar */
 
-        .card-box {
-            width: 100%;
-            display: inline-block;
-            margin: auto;
-        }
+nav {
+    background: var(--color-black);
+    padding: 40px 40px;
+    color: var(--color-white);
+    font-size: var(--font-large);
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .card {
-            width: 500px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
+nav ul {
+    width: 200px;
+    padding: 0;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+nav li {
+    list-style: none;
+    font-size: var(--font-medium);
+}
+
+nav a {
+    color: white;
+    padding: 5px;
+    margin: 0px 10px 0px 10px;
+}
+
+nav a:hover {
+    cursor: pointer;
+    color: black;
+    background: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transform: scale(1.1);
+    transition: transform 200ms ease-in-out ;
+}
+
+.navbar_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* home */
+
+.home {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    color: white;
+}
+
+.logo_Btn {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.logo_Btn:hover {
+    transform: translateY(6px) rotate(0.8turn);
+    transition: all 500ms ease-in-out;
+}
+
+.logo_Btn:active {
+    transform: scale(1.1);
+}
+
+.logo_Btn:focus {
+    outline: 0;
+}
+
+
+/*.col-sm-6 col-md-4 {*/
+/*    width: 100%;*/
+/*}*/
+
+
+
+/*@media screen and (max-width: 768px) {*/
+/*    nav {*/
+
+/*    }*/
+
+    .card-box {
+
+    }
+.warp {
+    margin:auto;
+}
+    .card {
+        width: 600px;
+        display:inline-block;
+        margin : 15px 15px 15px 15px;
+    }
+
+    .card-box {
+        margin-top:20px;
+    }
+
+
     </style>
 </head>
 <body>
 <!-- HTML body structuring -->
 <!-- logo(?) & title & category (Home, Category, and Saved)-->
-<nav id="navbar">Scrappers
+<nav id="navbar"  style="font-family:'Black Han Sans'">Scrappers
+    <div class="logo">
+        <button class="logo_Btn" onclick="reload09()"><span style="font-size: 80px;">📫</span></button>
+    </div>
+    <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
+    <p id="datetime"></p>
     <ul class="navbar_list">
         <a href="{{ url_for('home') }}">
             <li>Home</li>
@@ -55,20 +163,18 @@
         </a>
     </ul>
 </nav>
-
-<section class="home" style=''>
-    <div class="home_intro">
-        <img src="">
-    </div>
-    </div>
-    <br>
-    <button onclick="sort_like()" class="filter_Btn">좋아요 순</button> <button onclick="sort_recent()" class="filter_Btn">최신 순</button>
-    <div class="save_box_bg">
-        <div class="card-box" id="save-box"></div>
-    </div>
+<!--style="outline:none; background:none; border:none; color:pink;"-->
+<button onclick="sort_like()">Hot</button>
+<button onclick="sort_recent()">최신순</button>
+<button onclick="sort_Review()">댓글 많은 순</button>
+<div class="card-box" id="save-box" style=''> </div>
 
 
     <script>
+        function reload09() {
+            window.location.reload()
+        }
+
         $(document).ready(function () {
             showArticles(), readReview()
         });
@@ -90,24 +196,27 @@
 
                         let temp_html = `
                              <div class="card" style="">
+
                     <img class="card-img-top"
                          src="${img}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a target="_blank" href="${url}" class="card-title">${title}</a>
-                        <p>${newspaper}</p>
+                       <a target="_blank" href="${url}" class="card-title" style="font-family:;">${title}</a>
+                       <p>${newspaper}</p>
+
+
 
                     <div class="input-group mb-3">
-                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
-                      <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${url}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')"><span style="font-family:'Black Han Sans'">작성</span></button>
+                      <button type="button" id="${url}_save" style="border:none; outline:none; background:none; font-size:25px;" onclick="readReview('${url}')" style="width:60px;">💬<span style = "color:#7986cb;"><b>${review_counts}</b></span></button>
+                      <button style="border:none; outline:none; background:none; font-size:25px;" onclick="incrementLikes('${url}')">🔥 <b><span style="color:#f50057;">${like_counts}</span></b></button>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">comment</th>
+                                <th scope="col" style="font-family:'Black Han Sans'">comment</th>
                             </tr>
                             <tbody id="${url}_comment" class="9999">
 
@@ -148,10 +257,10 @@
                         <p>${newspaper}</p>
 
                     <div class="input-group mb-3">
-                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
-                      <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${url}')" class="like_Btn">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')"><span style="font-family:'Black Han Sans'">작성</span></button>
+                      <button type="button" id="${url}_save" style="border:none; outline:none; background:none; font-size:25px;" onclick="readReview('${url}')" style="width:60px;">💬<span style = "color:#7986cb;"><b>${review_counts}</b></span></button>
+                      <button style="border:none; outline:none; background:none; font-size:25px;" onclick="incrementLikes('${url}')">🔥 <b><span style="color:#f50057;">${like_counts}</span></b></button>
                     </div>
 
                     <table class="table">
@@ -199,10 +308,60 @@
                         <p>${newspaper}</p>
 
                     <div class="input-group mb-3">
-                      <input type="text" id="${url}_input" class="form-control" placeholder="comment" aria-label="Recipient's username" aria-describedby="button-addon2">
-                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')">작성</button>
-                       <button type="button" class="btn btn-light" id="${url}_save" onclick="readReview('${url}')" style="width:100px;">댓글 확인 <span style = "color:red;"> ${review_counts} 개</span></button>
-                      <button onclick="incrementLikes('${url}')">👍 <b><span style="color:red;">${like_counts}</b></button>
+                      <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')"><span style="font-family:'Black Han Sans'">작성</span></button>
+                      <button type="button" id="${url}_save" style="border:none; outline:none; background:none; font-size:25px;" onclick="readReview('${url}')" style="width:60px;">💬<span style = "color:#7986cb;"><b>${review_counts}</b></span></button>
+                      <button style="border:none; outline:none; background:none; font-size:25px;" onclick="incrementLikes('${url}')">🔥 <b><span style="color:#f50057;">${like_counts}</span></b></button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               <th scope="col">comment</th>
+                            </tr>
+                            <tbody id="${url}_comment" onload="readReview('${url}')" class="9999">
+
+                            </tbody>
+
+                        </thead>
+                    </table>
+                   `
+                        $('#save-box').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function sort_Review() {
+            $.ajax({
+                type: "GET",
+                url: "/showSaveNews/review",
+                data: {},
+                success: function (response) {
+                    $('#save-box').html("");
+                    let list = response['list_saveBox']
+                    for (let i = list.length-1; i >= 0; i--) {
+                        let title = list[i]['title']
+                        let img = list[i]['img']
+                        let url = list[i]['url']
+                        let newspaper = list[i]['newspaper']
+                        let like_counts = list[i]['like_counts']
+                        let review_counts = list[i]['review_counts']
+
+                        let temp_html = `
+                             <div class="card" style="">
+                    <img class="card-img-top"
+                         src="${img}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="${url}" class="card-title">${title}</a>
+                        <p>${newspaper}</p>
+
+                    <div class="input-group mb-3">
+                      <input type="text" id="${url}_input" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button style="width:60px;" type="button" class="btn btn-dark" onclick="makeReview('${url}')"><span style="font-family:'Black Han Sans'">작성</span></button>
+                      <button type="button" id="${url}_save" style="border:none; outline:none; background:none; font-size:25px;" onclick="readReview('${url}')" style="width:60px;">💬<span style = "color:#7986cb;"><b>${review_counts}</b></span></button>
+                      <button style="border:none; outline:none; background:none; font-size:25px;" onclick="incrementLikes('${url}')">🔥 <b><span style="color:#f50057;">${like_counts}</span></b></button>
                     </div>
 
                     <table class="table">
@@ -288,9 +447,6 @@
                 })
             }
 
-function showReview() {
-
-            }
 
     </script>
 </section>
