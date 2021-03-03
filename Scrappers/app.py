@@ -224,6 +224,11 @@ def showSaveNews_recent():
     sort_recent = list(db.saveNews.find({}, {'_id': False}))
     return jsonify({'list_saveBox': sort_recent})
 
+@app.route('/showSaveNews/review', methods=['GET'])
+def showSaveNews_review():
+    sort_review = list(db.saveNews.find({}, {'_id': False}).sort('review_counts', 1))
+    return jsonify({'list_saveBox': sort_review})
+
 @app.route('/showSaveNews/like', methods=['POST'])
 def like_news():
     url_receive = request.form['url_give']
