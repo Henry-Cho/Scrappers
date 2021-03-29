@@ -1,29 +1,29 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
     <!-- Webpage Title -->
     <title>Home | Scrappers</title>
 
-<meta property="og:title" content="Scrappers"/>
-<meta property="og:description" content="실시간 뉴스 랭킹 확인 & 저장"/>
-<meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
+    <meta property="og:title" content="Scrappers" />
+    <meta property="og:description" content="실시간 뉴스 랭킹 확인 & 저장" />
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
-<!--          crossorigin="anonymous">-->
+    <!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
+    <!--          crossorigin="anonymous">-->
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <!-- 구글폰트-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
     <!--font-family: 'Black Han Sans', sans-serif;-->
@@ -35,321 +35,327 @@
     <!--
     <link href="{{ url_for('static', filename='style2.css') }}" rel="stylesheet">-->
 </head>
+
 <body>
-<style>
-    /* whole touch */
+    <style>
+        /* whole touch */
 
- @media screen and (max-width: 700px) {
+        @media screen and (max-width: 700px) {
 
-    nav {
-        width: 100%;
-    }
+            nav {
+                width: 100%;
+            }
 
-    div.card {
-        width: 350px;
-        display: inline-block;
-        margin: auto;
-        font-size:30px;
-    }
-    h5.card-title {
-        font-size:20px;
-        color:red;
-    }
+            div.card {
+                width: 360px;
+                display: inline-block;
+                margin: auto;
+                font-size: 30px;
+            }
 
-}
+            h5.card-title {
+                font-size: 20px;
+                color: red;
+            }
 
-:root {
-    --color-black: black;
-    --color-white: white;
-    --font-large: 48px;
-    --font-medium: 24px;
-    --font-kind: Black Han Sans, sans-serif;
-}
+        }
 
-body {
-    margin: 0;
-    font-family: var(--font-kind);
-}
+        :root {
+            --color-black: black;
+            --color-white: white;
+            --font-large: 48px;
+            --font-medium: 24px;
+            --font-kind: Black Han Sans, sans-serif;
+        }
 
-/* navbar */
+        body {
+            margin: 0;
+            font-family: var(--font-kind);
+        }
 
-nav {
-    background: var(--color-black);
-    padding: 40px 40px;
-    color: var(--color-white);
-    font-size: var(--font-large);
-    font-weight: bold;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* navbar */
 
-nav ul {
-    width: 200px;
-    padding: 0;
-    margin-bottom: 0;
-    font-weight: normal;
-}
+        nav {
+            background: var(--color-black);
+            padding: 40px 40px;
+            color: var(--color-white);
+            font-size: var(--font-large);
+            font-weight: bold;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-nav li {
-    list-style: none;
-    font-size: var(--font-medium);
-}
+        nav ul {
+            width: 200px;
+            padding: 0;
+            margin-bottom: 0;
+            font-weight: normal;
+        }
 
-nav a {
-    color: white;
-    padding: 5px;
-    margin: 0px 10px 0px 10px;
-}
+        nav li {
+            list-style: none;
+            font-size: var(--font-medium);
+        }
 
-nav a:hover {
-    cursor: pointer;
-    color: black;
-    background: white;
-    border-radius: 4px;
-    text-decoration: none;
-    transform: scale(1.1);
-    transition: transform 200ms ease-in-out ;
-}
+        nav a {
+            color: white;
+            padding: 5px;
+            margin: 0px 10px 0px 10px;
+        }
 
-.navbar_list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
+        nav a:hover {
+            cursor: pointer;
+            color: black;
+            background: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transform: scale(1.1);
+            transition: transform 200ms ease-in-out;
+        }
 
-/* home */
+        .navbar_list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
 
-.home {
-    padding: 100px 20px;
-    text-align: center;
-}
+        /* home */
 
-.logo img {
-    width: 100px;
-    height: 100px;
-    color: white;
-}
+        .home {
+            padding: 100px 20px;
+            text-align: center;
+        }
 
-.logo_Btn {
-    border: none;
-    background: none;
-    outline: none;
-}
+        .logo img {
+            width: 100px;
+            height: 100px;
+            color: white;
+        }
 
-.logo_Btn:hover {
-    transform: translateY(6px) rotate(0.8turn);
-    transition: all 500ms ease-in-out;
-}
+        .logo_Btn {
+            border: none;
+            background: none;
+            outline: none;
+        }
 
-.logo_Btn:active {
-    transform: scale(1.1);
-}
+        .logo_Btn:hover {
+            transform: translateY(6px) rotate(0.8turn);
+            transition: all 500ms ease-in-out;
+        }
 
-.logo_Btn:focus {
-    outline: 0;
-}
+        .logo_Btn:active {
+            transform: scale(1.1);
+        }
 
-/* main structure */
-/*
+        .logo_Btn:focus {
+            outline: 0;
+        }
+
+        /* main structure */
+        /*
 .top_article_section {
     display: flex;
     justify-content: space-between;
 }
 */
 
-/* logo decoration (Naver & Daum) */
+        /* logo decoration (Naver & Daum) */
 
-#naver_logo, #daum_logo {
-    color: black;
-    font-size: 70px;
-}
+        #naver_logo,
+        #daum_logo {
+            color: black;
+            font-size: 70px;
+        }
 
-#daum_logo:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 300ms ease-in-out;
-}
+        #daum_logo:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: transform 300ms ease-in-out;
+        }
 
-#daum_logo:hover #d {
-    color: dodgerblue;
-}
+        #daum_logo:hover #d {
+            color: dodgerblue;
+        }
 
-#daum_logo:hover #a {
-    color: lightgreen;
-}
+        #daum_logo:hover #a {
+            color: lightgreen;
+        }
 
-#daum_logo:hover #u {
-    color: orange;
-}
+        #daum_logo:hover #u {
+            color: orange;
+        }
 
-#daum_logo:hover #m {
-    color: #e8344e;
-}
+        #daum_logo:hover #m {
+            color: #e8344e;
+        }
 
-#naver_logo:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    color: green;
-    transition: transform 300ms ease-in-out;
-}
+        #naver_logo:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            color: green;
+            transition: transform 300ms ease-in-out;
+        }
 
-/* Card decoration */
+        /* Card decoration */
 
-.container {
-    display: flex;
-    justify-content: center;
-}
+        .container {
+            display: flex;
+            justify-content: center;
+        }
 
-.mini_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px 15px 0px 15px;
-    width: 100%;
-}
+        .mini_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0px 15px 0px 15px;
+            width: 100%;
+        }
 
-.section_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .section_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container h2 {
-    margin-bottom: 10px;
-}
+        .container h2 {
+            margin-bottom: 10px;
+        }
 
-.card {
-    width: 550px;
-    flex-grow: 1;
-    margin-bottom: 15px;
-}
+        .card {
+            width: 550px;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
 
-.card a {
-    color: black;
-}
+        .card a {
+            color: black;
+        }
 
-.card a:hover {
-    padding: 8px 12px;
-    background: black;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    color: white;
-    transition: all 300ms ease-in-out;
-}
+        .card a:hover {
+            padding: 8px 12px;
+            background: black;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: white;
+            transition: all 300ms ease-in-out;
+        }
 
-.card button {
-    margin: 10px;
-    font-weight: bolder;
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    color: gray;
-}
+        .card button {
+            margin: 10px;
+            font-weight: bolder;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            color: gray;
+        }
 
-.card button:hover {
-    cursor: pointer;
-    transform: scale(1.1) rotate(1turn);
-    color: black;
-    border-radius: 50%;
-    transition: all 400ms ease-in-out;
-}
+        .card button:hover {
+            cursor: pointer;
+            transform: scale(1.1) rotate(1turn);
+            color: black;
+            border-radius: 50%;
+            transition: all 400ms ease-in-out;
+        }
 
-.card button:focus {
-    transform: scale(1.1);
-    transition: all 300ms ease-in-out;
-    outline: none;
-}
+        .card button:focus {
+            transform: scale(1.1);
+            transition: all 300ms ease-in-out;
+            outline: none;
+        }
 
-.section_container img {
-    width: 600px;
-    height: 380px;
-}
+        .section_container img {
+            width: 600px;
+            height: 380px;
+        }
 
-@media screen and (max-width: 768px) {
-    .home {
-        padding: 80px 20px;
-    }
+        @media screen and (max-width: 768px) {
+            .home {
+                padding: 80px 20px;
+            }
 
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .section_container {
-        margin-bottom: 20px;
-    }
-    #daum_logo #d {
-    color: dodgerblue;
-}
+            .section_container {
+                margin-bottom: 20px;
+            }
 
-#daum_logo #a {
-    color: lightgreen;
-}
+            #daum_logo #d {
+                color: dodgerblue;
+            }
 
-#daum_logo #u {
-    color: orange;
-}
+            #daum_logo #a {
+                color: lightgreen;
+            }
 
-#daum_logo #m {
-    color: #e8344e;
-}
+            #daum_logo #u {
+                color: orange;
+            }
 
-#daum_logo {
-    cursor: pointer;
-}
+            #daum_logo #m {
+                color: #e8344e;
+            }
 
-#naver_logo {
-    cursor: pointer;
-    color: green;
-}
-}
+            #daum_logo {
+                cursor: pointer;
+            }
 
-.card-title {
-     font-family: 'Noto Serif KR';
-     font-size:30px;
-}
+            #naver_logo {
+                cursor: pointer;
+                color: green;
+            }
+        }
+
+        .card-title {
+            font-family: 'Noto Serif KR';
+            font-size: 30px;
+        }
 
 
-/* Saved page */
-</style>
-<!-- HTML body structuring -->
-<!-- logo(?) & title & category (Home, Category, and Saved)-->
-<nav id="navbar">Scrappers
-    <div class="logo">
-        <button class="logo_Btn" onclick="showArticles(), showArticles2()"><span style="font-size: 80px">📫</span></button>
-    </div>
-    <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
-    <p id="datetime"></p>
-    <ul class="navbar_list">
-        <a href="{{ url_for('home') }}">
-            <li>Home</li>
-        </a>
-        <a href="{{ url_for('saveBox') }}">
-            <li>Saved</li>
-        </a>
-    </ul>
-</nav>
+        /* Saved page */
+    </style>
+    <!-- HTML body structuring -->
+    <!-- logo(?) & title & category (Home, Category, and Saved)-->
+    <nav id="navbar">Scrappers
+        <div class="logo">
+            <button class="logo_Btn" onclick="showArticles(), showArticles2()"><span
+                    style="font-size: 80px">📫</span></button>
+        </div>
+        <!-- 현재 날짜 시간 표기해서 업테이트 시각 알려주기 -->
+        <p id="datetime"></p>
+        <ul class="navbar_list">
+            <a href="{{ url_for('home') }}">
+                <li>Home</li>
+            </a>
+            <a href="{{ url_for('saveBox') }}">
+                <li>Saved</li>
+            </a>
+        </ul>
+    </nav>
 
-<section class="home">
-    <div class="container">
-        <div class="mini_container">
-        <h2 id="naver_logo">NAVER</h2>
-            <div class="section_container" id="naver">
+    <section class="home">
+        <div class="container">
+            <div class="mini_container">
+                <h2 id="naver_logo">NAVER</h2>
+                <div class="section_container" id="naver">
+
+                </div>
+            </div>
+            <div class="mini_container">
+                <h2 id="daum_logo"><span id="d">D</span><span id="a">a</span><span id="u">u</span><span id="m">m</span>
+                </h2>
+                <div class="section_container" id="daum">
+                </div>
+
 
             </div>
         </div>
-        <div class="mini_container">
-            <h2 id="daum_logo"><span id="d">D</span><span id="a">a</span><span id="u">u</span><span id="m">m</span></h2>
-            <div class="section_container" id="daum">
-        </div>
 
-
-        </div>
-    </div>
-
-    <!--
+        <!--
     <div class="top_article_section">
         <div class="article_box">
             <h2 id="naver_logo">Naver</h2>
@@ -365,48 +371,48 @@ nav a:hover {
         </div>
     </div>
     -->
-</section>
+    </section>
 
-<script>
-    $(document).ready(function () {
-        $("#datetime").html("");
-        var dt = new Date();
-        let temp_string =
-            (dt.getFullYear()) + "." +
-            (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
-            (("0" + dt.getDate()).slice(-2)) + "." +
-            " " + (("0" + dt.getHours()).slice(-2)) + ":" +
-            (("0" + dt.getMinutes()).slice(-2)) + "<span style='color: white; font-size: 20px;'> ✔</span>";
-        document.getElementById("datetime").innerHTML = `<span style="font-size:16px; font-family: 'Noto Serif KR'; color: white;">${temp_string}</span>`;
-    });
+    <script>
+        $(document).ready(function () {
+            $("#datetime").html("");
+            var dt = new Date();
+            let temp_string =
+                (dt.getFullYear()) + "." +
+                (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
+                (("0" + dt.getDate()).slice(-2)) + "." +
+                " " + (("0" + dt.getHours()).slice(-2)) + ":" +
+                (("0" + dt.getMinutes()).slice(-2)) + "<span style='color: white; font-size: 20px;'> ✔</span>";
+            document.getElementById("datetime").innerHTML = `<span style="font-size:16px; font-family: 'Noto Serif KR'; color: white;">${temp_string}</span>`;
+        });
 
-    function showArticles() {
-        $('#naver').empty()
-        $.ajax({
-            type: "GET",
-            url: "/api/list",
-            data: {},
-            success: function (response) {
-                $("#datetime").html("");
-                var dt = new Date();
+        function showArticles() {
+            $('#naver').empty()
+            $.ajax({
+                type: "GET",
+                url: "/api/list",
+                data: {},
+                success: function (response) {
+                    $("#datetime").html("");
+                    var dt = new Date();
                     let temp_string =
-                    (dt.getFullYear()) + "." +
-                    (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
-                    (("0" + dt.getDate()).slice(-2)) + "." +
-                    " " + (("0" + dt.getHours()).slice(-2)) + ":" +
-                    (("0" + dt.getMinutes()).slice(-2));
-                document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color:pink; font-family: 'Noto Serif KR', serif;">${temp_string}</span><span style='color: green; font-size: 40px'>✔</span>`;
+                        (dt.getFullYear()) + "." +
+                        (("0" + (dt.getMonth() + 1)).slice(-2)) + "." +
+                        (("0" + dt.getDate()).slice(-2)) + "." +
+                        " " + (("0" + dt.getHours()).slice(-2)) + ":" +
+                        (("0" + dt.getMinutes()).slice(-2));
+                    document.getElementById("datetime").innerHTML = `<span style="font-size: 16px; color:pink; font-family: 'Noto Serif KR', serif;">${temp_string}</span><span style='color: green; font-size: 40px'>✔</span>`;
 
-                let list = response['news_give']
-                for (let i = 0; i < 4; i++) {
-                    let title = list[i]['top_article_title']
-                    let img = list[i]['top_article_img']
-                    let url = list[i]['top_article_url']
-                    let logo = list[i]['top_article_logo'] // logo 이미지
-                    let link = list[i]['top_article_link']
-                    let newspaper = list[i]['top_article_src']
+                    let list = response['news_give']
+                    for (let i = 0; i < 4; i++) {
+                        let title = list[i]['top_article_title']
+                        let img = list[i]['top_article_img']
+                        let url = list[i]['top_article_url']
+                        let logo = list[i]['top_article_logo'] // logo 이미지
+                        let link = list[i]['top_article_link']
+                        let newspaper = list[i]['top_article_src']
 
-                    let temp_html = `
+                        let temp_html = `
 
                     <div class="card" style="margin-bottom:35px;">
                             <span id="${url}" name="${img}" class="${title}"></span>
@@ -419,27 +425,27 @@ nav a:hover {
                               </div>
                 </div>
                             `
-                    $('#naver').append(temp_html)
+                        $('#naver').append(temp_html)
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
 
-    function showArticles2() {
-        $('#daum').empty()
-        $.ajax({
-            type: "GET",
-            url: "/api2/list",
-            data: {},
-            success: function (response) {
+        function showArticles2() {
+            $('#daum').empty()
+            $.ajax({
+                type: "GET",
+                url: "/api2/list",
+                data: {},
+                success: function (response) {
 
-                let list = response['news_give2']
-                for (let i = 0; i < list.length; i++) {
-                    let title = list[i]['title']
-                    let img = list[i]['img']
-                    let url = list[i]['url']
-                    let newspaper = list[i]['newspaper']
-                    let temp_html = `
+                    let list = response['news_give2']
+                    for (let i = 0; i < list.length; i++) {
+                        let title = list[i]['title']
+                        let img = list[i]['img']
+                        let url = list[i]['url']
+                        let newspaper = list[i]['newspaper']
+                        let temp_html = `
 
                         <div class="card" style="margin-bottom:35px;">
                                 <span id="${url}" name="${img}" class="${title}"></span>
@@ -453,36 +459,37 @@ nav a:hover {
                         </div>
 
                             `
-                    $('#daum').append(temp_html)
+                        $('#daum').append(temp_html)
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
 
-    function saveNews(url) {
+        function saveNews(url) {
 
-        let img = document.getElementById(url).getAttribute('name');
-        let title = document.getElementById(url).getAttribute('class');
-        let newspaper = document.getElementById(url + "_box").getAttribute('class');
-        // db에 저장할 값 가지고 가기
+            let img = document.getElementById(url).getAttribute('name');
+            let title = document.getElementById(url).getAttribute('class');
+            let newspaper = document.getElementById(url + "_box").getAttribute('class');
+            // db에 저장할 값 가지고 가기
 
-        $.ajax({
-            type: "POST",
-            url: "/save",
-            data: {
-                title_give: title,
-                img_give: img,
-                url_give: url,
-                newspaper_give: newspaper
-            },
-            // 지금 파이썬으로 보내는 값들.
-            success: function (response) {
-                alert(response["msg"]);
+            $.ajax({
+                type: "POST",
+                url: "/save",
+                data: {
+                    title_give: title,
+                    img_give: img,
+                    url_give: url,
+                    newspaper_give: newspaper
+                },
+                // 지금 파이썬으로 보내는 값들.
+                success: function (response) {
+                    alert(response["msg"]);
 
-            }
-        })
-    }
-</script>
+                }
+            })
+        }
+    </script>
 
 </body>
+
 </html>
