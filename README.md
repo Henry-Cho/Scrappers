@@ -2,8 +2,9 @@
 
 팀 미니프로젝트
 
-![image](https://user-images.githubusercontent.com/78591345/113448341-98f0e100-9436-11eb-847d-af3c819bd772.jpg)
+https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 
+![image](https://user-images.githubusercontent.com/78591345/113448341-98f0e100-9436-11eb-847d-af3c819bd772.jpg)
 
 
 
@@ -34,6 +35,9 @@
 - CSS 효과
 - 카드 양식
 
+
+![image](https://user-images.githubusercontent.com/78591345/113448337-97bfb400-9436-11eb-886a-dc99cbd0a248.jpeg)
+![image](https://user-images.githubusercontent.com/78591345/113448335-97bfb400-9436-11eb-8f68-f7831c61c6ad.PNG)
 
 
 <br />
@@ -74,11 +78,13 @@
 ## 3 . 코드 리뷰
 
 
+로그인 & 회원가입
+
 <details> <summary> </summary> <div markdown="1">
     
-##### 로그인 & 회원가입
+![image](https://user-images.githubusercontent.com/78591345/113448339-98584a80-9436-11eb-8242-2a6f5b9a1d06.jpg)
 
-```
+```python
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -144,11 +150,14 @@ JWT토큰을 이용해서 로컬스토리지에 토큰을 넣는 방식으로 �
 
 </br>
 
-##### 크롤링 및 기사저장
+크롤링 및 기사저장
 
 <details> <summary> </summary> <div markdown="1">
+    
+    
+ ![image](https://user-images.githubusercontent.com/78591345/113448341-98f0e100-9436-11eb-847d-af3c819bd772.jpg)
 
-```
+```python
 @app.route('/api/list', methods=['GET'])
 def show_news():
     db.finalPrac.remove({ });
@@ -210,7 +219,9 @@ def show_news():
 
 기사저장
 
-```
+![image](https://user-images.githubusercontent.com/78591345/113448332-95f5f080-9436-11eb-937b-30a2061e3011.jpg)
+
+```python
 @app.route('/save', methods=['POST'])
 def save():
     url_receive = request.form['url_give']
@@ -243,11 +254,13 @@ def save():
 
 </br>
 
-##### 댓글 남기기
+댓글 남기기
 
 <details> <summary> </summary> <div markdown="1">
 
-```
+![image](https://user-images.githubusercontent.com/78591345/113448340-98584a80-9436-11eb-9cff-147016a11038.jpg)
+
+```python
 # 리뷰 받아 오기
 @app.route('/review', methods=['POST'])
 def write_review():
