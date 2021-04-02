@@ -41,9 +41,11 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 <br />
 레이아웃 & 노션 작업
 <details> <summary> </summary> <div markdown="1">
+    
 ![image](https://user-images.githubusercontent.com/78591345/113448337-97bfb400-9436-11eb-886a-dc99cbd0a248.jpeg)
 ![image](https://user-images.githubusercontent.com/78591345/113448335-97bfb400-9436-11eb-8f68-f7831c61c6ad.PNG)
-    </div>
+   
+   </div>
 </details>
 
 
