@@ -38,7 +38,9 @@
 
 <br />
 <br />
+
 ## 2. API
+
 <details> <summary> </summary> <div markdown="1">
 
 | **메인 페이지**      |                  |                        |                           |
@@ -68,10 +70,12 @@
 
 <br />
 <br />
+
 ## 3 . 코드 리뷰
 
 
 <details> <summary> </summary> <div markdown="1">
+    
 ##### 로그인 & 회원가입
 
 ```
@@ -139,8 +143,10 @@ JWT토큰을 이용해서 로컬스토리지에 토큰을 넣는 방식으로 �
 
 
 </br>
+
+##### 크롤링 및 기사저장
+
 <details> <summary> </summary> <div markdown="1">
-크롤링 및 기사저장
 
 ```
 @app.route('/api/list', methods=['GET'])
@@ -236,8 +242,10 @@ def save():
 
 
 </br>
+
+##### 댓글 남기기
+
 <details> <summary> </summary> <div markdown="1">
-댓글 남기기
 
 ```
 # 리뷰 받아 오기
@@ -280,7 +288,9 @@ def read_reviews():
 <br />
 
 # 4 . 느낀점
+
 <details> <summary> </summary> <div markdown="1">
+    
 2021.02.10에 코딩을 시작했으니 거의 2주간? 공부 열심히 하고, 처음으로 팀 프로젝트를 진행해본건데, 생각보다 너무 재밌었고 압박감이 상당했다.
 
 제한 시간 내에 프로젝트를 완수해야한다는 압박감과 부담감이 어떤 즐거움으로 다가왔다. 팀원들도 모두 잘 협조해서 모든 조 중에서 제일 일찍 끝내고 다른 부분들을 공부했던 것 같다.
