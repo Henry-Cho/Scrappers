@@ -4,7 +4,7 @@
 
 팀 미니프로젝트
 
-
+![image](https://user-images.githubusercontent.com/78591345/113448341-98f0e100-9436-11eb-847d-af3c819bd772.jpg)
 
 ## 목차
 
@@ -38,6 +38,7 @@
 
 
 ## 2. API
+<details> <summary> </summary> <div markdown="1">
 
 | **메인 페이지**      |                  |                        |                           |
 | -------------------- | ---------------- | ---------------------- | ------------------------- |
@@ -61,8 +62,8 @@
 | 리뷰 저장            | POST             | /review                | msg : 저장완료            |
 | 리뷰 보여주기        | POST             | /reviews               | all_reviews:reviews       |
 
-## 
-
+</div>
+</details>
 
 
 ## 3 . 코드 리뷰
