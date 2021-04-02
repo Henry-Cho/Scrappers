@@ -16,9 +16,10 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 
 
 <br />
-<br />
+## 1. 기능
 
-## 1. 내가 구현한 기능
+내가 구현한 기능
+
 - 로그인 & 회원가입
 
 - 네이버 및 다음 기사 1~4위 크롤링
@@ -30,13 +31,13 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 - AWS 배포
 
 <br />
-<br />
 팀이 구현한 기능
 
 - 프론트단 화면
 - CSS 효과
 - 카드 양식
 
+<br />
 레이아웃 & 노션 작업
 <details> <summary> </summary> <div markdown="1">
 ![image](https://user-images.githubusercontent.com/78591345/113448337-97bfb400-9436-11eb-886a-dc99cbd0a248.jpeg)
@@ -45,7 +46,6 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 </details>
 
 
-<br />
 <br />
 
 ## 2. API
@@ -77,7 +77,6 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 </div>
 </details>
 
-<br />
 <br />
 
 ## 3 . 코드 리뷰
@@ -221,7 +220,7 @@ def show_news():
 그리고 다시 넣을 때는 기존의 DB를 전부 삭제하고 넣어주는 방식으로  DB엔 기사가 안 쌓이고, 이용자들에겐 시간표시와 함께 크롤링 되어 마치 실시간으로 긁어오는 것처럼 보이게 했다.
 
 
-
+<br />
 기사저장
 
 ![image](https://user-images.githubusercontent.com/78591345/113448332-95f5f080-9436-11eb-937b-30a2061e3011.jpg)
@@ -302,7 +301,7 @@ def read_reviews():
 
 
 
-<br />
+
 <br />
 
 # 4 . 느낀점
@@ -310,6 +309,8 @@ def read_reviews():
 <details> <summary> </summary> <div markdown="1">
     
 2021.02.10에 코딩을 시작했으니 거의 2주간? 공부 열심히 하고, 처음으로 팀 프로젝트를 진행해본건데, 생각보다 너무 재밌었고 압박감이 상당했다.
+
+협업 방식은 내가 백엔드를 했고, 형석님은 간단한 백엔드와 프론트엔드, 민지님은 프론트 엔드 위주로 작업했다.
 
 노션도 직접 만들어 팀과 공유해서 작업했는데, 서로의 작업을 명료하게 볼 수 있고, 필요한 부분을 찾아갈 수 있어서 편했다.
 
