@@ -27,6 +27,8 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 
 - 댓글 & 좋아요
 
+- AWS 배포
+
 <br />
 <br />
 팀이 구현한 기능
@@ -35,9 +37,12 @@ https://www.youtube.com/watch?v=RM29QBPca90&t=1s
 - CSS 효과
 - 카드 양식
 
-
+레이아웃 & 노션 작업
+<details> <summary> </summary> <div markdown="1">
 ![image](https://user-images.githubusercontent.com/78591345/113448337-97bfb400-9436-11eb-886a-dc99cbd0a248.jpeg)
 ![image](https://user-images.githubusercontent.com/78591345/113448335-97bfb400-9436-11eb-8f68-f7831c61c6ad.PNG)
+    </div>
+</details>
 
 
 <br />
@@ -305,6 +310,8 @@ def read_reviews():
 <details> <summary> </summary> <div markdown="1">
     
 2021.02.10에 코딩을 시작했으니 거의 2주간? 공부 열심히 하고, 처음으로 팀 프로젝트를 진행해본건데, 생각보다 너무 재밌었고 압박감이 상당했다.
+
+노션도 직접 만들어 팀과 공유해서 작업했는데, 서로의 작업을 명료하게 볼 수 있고, 필요한 부분을 찾아갈 수 있어서 편했다.
 
 제한 시간 내에 프로젝트를 완수해야한다는 압박감과 부담감이 어떤 즐거움으로 다가왔다. 팀원들도 모두 잘 협조해서 모든 조 중에서 제일 일찍 끝내고 다른 부분들을 공부했던 것 같다.
 
