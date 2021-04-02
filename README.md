@@ -1,10 +1,11 @@
-# chapter1-team9
-
 # Scrappers
 
 팀 미니프로젝트
 
 ![image](https://user-images.githubusercontent.com/78591345/113448341-98f0e100-9436-11eb-847d-af3c819bd772.jpg)
+
+
+
 
 ## 목차
 
